@@ -1,37 +1,47 @@
 #include "main.h"
+
 /**
- * _strncat - concatenates n bytes from a string to another
- * @dest: destination string
- * @src: source string
- * @n: number of bytes of str to concatenate
- *
- * Return: a pointer to the resulting string dest
+ * _strncat - concatenate n bytes to destination string
+ * @dest: string to be appended to
+ * @src: string to append
+ * @n: append n number of bytes(chars)
+ * Return: concatenated string
  */
+
 char *_strncat(char *dest, char *src, int n)
 {
-	int i, m;
+	int i = 0;
+	int j = 0;
 
-	m = string_length(dest);
-	for (i = 0; i < n && src[i] != '\0'; i++)
+	while (dest[i] != '\0') /*i is index of null terminator*/
+		i++;
+
+	while (src[j] != src[n]) /*append replacing null terminator*/
 	{
-		dest[m + i] = src[i];
+		dest[i] = src[j];
+		i++;
+		j++;
 	}
-	dest[m + i] = '\0';
+	dest[i] = '\0';
+
 	return (dest);
 }
-
-/**
- * string_length - finds the length of a string.
- * Return: length of c
- * @pointer: pointer
- */
-int string_length(char *pointer)
+/* another method
+char *_strncat(char *dest, char *src, int n)
 {
-	int c = 0;
-
-	while (*(pointer + c) != '\0')
+   //while dest exists and isn't null terminator yet
+   while (*dest)
+       dest++;
+   // replace dest while src exists and insert nulls till n bytes
+   for (i = 0; i < n; i++)
+   {
+	while (*src)
 	{
-		c++;
+		*dest = *src;
+		dest++;
+		src++;
 	}
-	return (c);
+	*dest = '\0';
+   }
 }
+*/
